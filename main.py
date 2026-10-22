@@ -1,3 +1,5 @@
+"""Exemplo didático de extração de título e link com requests e BeautifulSoup."""
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,30 +17,35 @@ def criar_soup(html):
     return BeautifulSoup(html, "html.parser")
 
 
-def imprimir_h1(soup):
-    h1 = soup.select_one("h1#firstHeading")
-    if h1:
-        print("H1:", h1.get_text(strip=True))
+def imprimir_titulo(soup):
+    titulo = soup.select_one("h1") or soup.title
+    if titulo:
+        print("Título:", titulo.get_text(strip=True))
     else:
-        print("Nenhum H1 encontrado")
+        print("Nenhum título encontrado")
 
 
 def imprimir_link(soup):
-    link = soup.find("a", href="https://pt.wikipedia.org/wiki/Chegou_a_Hora_de_Recomeçar")
+    # Usa um link real presente no HTML em vez de depender de um URL específico.
+    link = soup.select_one("main a[href]") or soup.select_one("a[href]")
     if link:
         print("Texto do link:", link.get_text(strip=True))
         print("Atributo href:", link["href"])
-        print("Todos os atributos:", link.attrs)
     else:
         print("Nenhum link encontrado")
 
 
 def main():
-    html = buscar_pagina(URL)
+    try:
+        html = buscar_pagina(URL)
+    except requests.RequestException as erro:
+        print(f"Não foi possível acessar a página: {erro}")
+        return 1
     soup = criar_soup(html)
-    imprimir_h1(soup)
+    imprimir_titulo(soup)
     imprimir_link(soup)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
