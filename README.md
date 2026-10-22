@@ -68,6 +68,14 @@ python main.py
 
 Para testar no notebook, rode `jupyter notebook` e abra o `main.ipynb`. Se estiver no VS Code, escolha o Python da pasta `.venv` como kernel.
 
+## Testes
+
+Os testes usam HTML fictício e não precisam acessar a Wikipédia:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
 ## O que eu aprendi
 
 - Como usar o `requests` para buscar uma página, com `headers`, `timeout` e `raise_for_status()`
