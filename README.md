@@ -6,8 +6,9 @@ Projeto de estudo em Python que acessa a página inicial da [Wikipédia em portu
 
 - Faz uma requisição `GET` à Wikipédia
 - Passa o conteúdo da página (`resposta.text`) para o BeautifulSoup
-- Imprime o texto do `<h1>`
-- Imprime um link (`<a>`), o texto dele e o atributo `href`
+- Exibe o primeiro `<h1>` encontrado ou o título `<title>` como alternativa.
+- Exibe um link presente no HTML, seu texto e o atributo `href`.
+- Mostra uma mensagem de erro caso a requisição HTTP falhe.
 
 ## Como funciona
 
@@ -78,4 +79,4 @@ Para testar no notebook, rode `jupyter notebook` e abra o `main.ipynb`. Se estiv
 
 ## Autor
 
-Dedezin - [GitHub](https://github.com/Coutin061017)
+André Coutinho - [GitHub](https://github.com/Coutin061017)
